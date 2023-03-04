@@ -1,27 +1,59 @@
+
 const choice = ["rock", "paper", "scissors"]
+let playerScore = parseInt(0);
+let computerScore = parseInt(0);
+let win = ("You Win")
+let tie = ("Tie")
+let lose = ("You Lose")
 
 function computerPlay() {
     const choice = ["rock", "paper", "scissors"]
     return choice[Math.floor(Math.random() * choice.length)];
 }
 const computerChoice = computerPlay();
-const playerChoice = prompt("Your Move");
 
 function playRound (playerChoice, computerChoice) {
-    if (playerChoice === computerChoice)
-    return ("Tie");
-    else if (playerChoice === "rock" && computerChoice === "paper")
-    return ("you lose, paper beats rock");
-    else if (playerChoice === "rock" && computerChoice === "scissors")
-    return ("you win, rock beats scissors");
-    else if (playerChoice === "scissors" && computerChoice === "paper")
-    return ("you win, paper beats scissors");
-    else if (playerChoice === "scissors" && computerChoice === "rock")
-    return ("you lose, rock beats scissors");
-    else if (playerChoice === "paper" && computerChoice === "scissors")
-    return ("you lose, scissors beats paper");
-    else (playerChoice === "paper" && computerChoice === "rock")
-    return ("you win, paper beats rock")
+    if (playerChoice === computerChoice) {
+        return tie;
+    } else if (playerChoice === "rock" && computerChoice === "scissors" || playerChoice === "scissors" && computerChoice === "paper" || playerChoice === "paper" && computerChoice === "rock") {
+        playerScore++;
+        return win;
+    } else {
+        computerScore++;
+        return lose;
+    }
+ }
+
+function score(playerScore, computerScore) {
+    if (playerScore === computerScore) {
+        return ("its a tie! Play Again?")
+    } else if (playerScore < computerScore) {
+        return ("You lost! Play Again?")
+    } else (playerScore > computerScore) 
+        return ("You won! Play Again?")
+    
 }
 
-console.log(playRound(playerChoice, computerChoice));
+
+
+function game() {
+    for (var i = 0; i < 5; i++) {
+    let playerChoice = prompt("Your Move");
+    let computerChoice = computerPlay();
+    console.log(playRound(playerChoice, computerChoice))
+    console.log("Your Score = " + playerScore);
+    console.log("Computer Score = " + computerScore);
+    }
+}
+game();
+console.log(score(playerScore, computerScore));
+
+function score(playerScore, computerScore) {
+    if (playerScore === computerScore) {
+        return ("its a tie! Play Again?")
+    } else if (playerScore < computerScore) {
+        return ("You lost! Play Again?")
+    } else (playerScore > computerScore) 
+        return ("You won! Play Again?")
+    
+}
